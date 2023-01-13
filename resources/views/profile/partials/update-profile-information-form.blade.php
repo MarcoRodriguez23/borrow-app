@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -60,24 +60,46 @@
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
+                        {{ __('Su Email esta sin verificar.') }}
 
                         <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
+                            {{ __('Clic aqui para reenviar mensaje de verificación de Email.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
                         <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
+                            {{ __('Un nuevo link de verificación a sido enviado a la bandeja de su Email') }}
                         </p>
                     @endif
                 </div>
             @endif
         </div>
 
+        <div>
+            <x-input-label for="photo" :value="__('Foto de perfil')" />
+            <input 
+                id="photo"
+                name="photo"
+                type="file"
+                class="border p-3 w-full rounded-lg"
+                accept=".jpg, .jpeg, .png"
+            >
+        </div>
+
+        <div>
+            <x-input-label for="imagen" :value="__('Fondo de perfil')" />
+            <input 
+                id="imagen"
+                name="imagen"
+                type="file"
+                class="border p-3 w-full rounded-lg"
+                accept=".jpg, .jpeg, .png"
+            >
+        </div>
+
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Guardar') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p
@@ -86,7 +108,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                >{{ __('Guardado.') }}</p>
             @endif
         </div>
     </form>

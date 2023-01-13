@@ -4,8 +4,8 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{$user->name}} {{$user->lastname}}
             </h2>
-            <img src="#" alt="foto de perfil">
-            <img src="#" alt="fondo de perfil">
+            <img src="{{asset('profiles/'.$user->photo)}}" class="w-96" alt="foto de perfil">
+            <img src="{{asset('fondos/'.$user->imagen)}}" class="w-96" alt="fondo de perfil">
             @auth
             @if (auth()->user()->id == $user->id)
                 <a href="{{route('profile.edit')}}">Editar perfil</a>  
