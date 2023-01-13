@@ -1,15 +1,37 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Home') }}
+            </h2>
+            <a href="{{route('item.index')}}">Crear nuevo articulo</a>
+        </div>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+    <div class="py-12 w-4/5 mx-auto">
+        <div class="md:grid md:grid-cols-3 text-center">
+            <div>
+                <h3>
+                    Articulos de mis contactos
+                </h3>
+                <div class="bg-orange-400">
+                    aqui van los articulos
+                </div>
+            </div>
+            <div>
+                <h3>
+                    Articulos solicitados
+                </h3>
+                <div class="bg-orange-400">
+                    aqui van los articulos
+                </div>
+            </div>
+            <div>
+                <h3>
+                    Mis articulos
+                </h3>
+                <div class="bg-orange-400">
+                    aqui van los articulos
                 </div>
             </div>
         </div>

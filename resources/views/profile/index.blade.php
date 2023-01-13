@@ -1,6 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <div id="parte superior">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Mi perfil') }}
+        </h2>
+    </x-slot>
+
+    <div class="w-4/5 mx-auto">
+        <div id="parte superior" class="bg-green-200">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{$user->name}} {{$user->lastname}}
             </h2>
@@ -15,7 +21,7 @@
             @endauth
             
         </div>
-        <div id="parte inferior">
+        <div id="parte inferior" class="bg-green-600 flex justify-between">
             <div id="parte izquierda">
                 <h3>Datos</h3>
                 <p>Conoce sobre mi</p>
@@ -34,7 +40,9 @@
                 </div>
             </div>
         </div>
-    </x-slot>
+    </div>
+
+
 
     @auth
         <a href="{{route('profile.edit',auth()->user()->id)}}"></a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/register', [RegisterController::class,'index'])->name('register');
+Route::get('/create-item',[ItemController::class, 'index'])->name('item.index');
+Route::post('/create-item',[ItemController::class, 'store'])->name('item.store');
 
 require __DIR__.'/auth.php';
