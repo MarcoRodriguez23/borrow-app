@@ -53,4 +53,24 @@ class User extends Authenticatable implements MustVerifyEmail
      {
          return $this->hasMany(Item::class);
      }
+
+     public function contacts()
+    {
+        return $this->belongsToMany(User::class,'contacts','user_id','contact_id');
+    }
+
+    public function contactado(User $user)
+    {
+        return $this->contacts->contains($user->id);
+    }
+
+    // public function contactadoinv(User $user)
+    // {
+    //     return $this->contactings->contains($user->id);
+    // }
+
+    public function contactings()
+    {
+        return $this->belongsToMany(User::class,'contacts','contact_id','user_id');
+    }
 }

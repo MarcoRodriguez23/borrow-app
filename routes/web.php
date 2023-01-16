@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,7 @@ Route::patch('/item/{item}/edit',[ItemController::class, 'update'])->name('item.
 // Route::get('/items/{item}',[ItemController::class, 'index'])->name('item.index');
 
 //rutas para contactos
+Route::get('/solicitudes',[ContactController::class,'index'])->name('solicitudes');
+Route::post('/profile-{user}/contact',[ContactController::class,'store'])->name('user.contact');
 
 require __DIR__.'/auth.php';

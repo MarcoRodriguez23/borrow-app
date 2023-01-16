@@ -13,12 +13,24 @@
             <img src="{{asset('profiles/'.$user->photo)}}" class="w-96" alt="foto de perfil">
             <img src="{{asset('fondos/'.$user->imagen)}}" class="w-96" alt="fondo de perfil">
             @auth
-            @if (auth()->user()->id == $user->id)
-                <a href="{{route('profile.edit')}}">Editar perfil</a>  
-            @else
-                <p>Enviar solicitud de amistad</p>  
-            @endif
+                @if (auth()->user()->id == $user->id)
+                    <a href="{{route('profile.edit')}}">Editar perfil</a>
+                @endif
             @endauth
+            
+            @auth
+                @if ($user->id !== auth()->user()->id)
+                    @if ($user->contactado(auth()->user()) || $user->contactings(auth()->user()))
+                        <p>Solicitud de contacto enviada</p>
+                    @else
+                        <form action="{{route('user.contact',$user)}}" method="POST">
+                            @csrf
+                            <input type="submit" class="bg-blue-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer" value="Enviar solicitud de contacto">
+                        </form>
+                    @endif
+                    
+                @endif
+                @endauth
             
         </div>
         <div id="parte inferior" class="bg-green-600 flex justify-between">
