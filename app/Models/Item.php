@@ -15,6 +15,18 @@ class Item extends Model
         'init_date',
         'last_date',
         'condition',
-        'description'
+        'description',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    //un usuario puede publicar muchos articulos
+    public function photo()
+    {
+        return $this->hasOne(Photo::class);
+    }
 }

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('Crear articulo para ofertar') }}
         </h2>
     </x-slot>
@@ -8,8 +8,9 @@
 
     <div class="py-12 w-4/5 mx-auto">
         <div class="px-10 bg-white rounded-lg shadow-xl p-10 mt-10 md:mt-0">
-            <form action="{{route('item.store')}}" method="POST">
+            <form action="{{route('item.store')}}" method="POST" class="w-3/5 mx-auto">
                 @csrf
+                
                 <div class="mb-5">
                     <label for="title" class="mb-2 block uppercase text-gray-500 font-bold">Titulo</label>
                     <input
@@ -84,26 +85,18 @@
                 </div>
 
                 <div class="mb-5">
-                    <label for="descripcion" class="mb-2 block uppercase text-gray-500 font-bold">
+                    <label for="description" class="mb-2 block uppercase text-gray-500 font-bold">
                         Descrpción
                     </label>
                     <textarea
-                        id="descripcion"
-                        name="descripcion"
+                        id="description"
+                        name="description"
                         placeholder="Descripción de la publicación"
-                        class="border p-3 w-full rounded-lg @error('descripcion') border-red-500 @enderror"
-                        >{{old('descripcion')}}</textarea>
-                    @error('descripcion')
+                        class="border p-3 w-full rounded-lg @error('description') border-red-500 @enderror"
+                        >{{old('description')}}</textarea>
+                    @error('description')
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
                     @enderror
-                </div>
-
-                <div class="mb-5">
-                    <input type="hidden" name="imagen" value={{old('imagen')}}>
-                    @error('imagen')
-                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{$message}}</p>
-                    @enderror
-                    
                 </div>
 
                 <input
