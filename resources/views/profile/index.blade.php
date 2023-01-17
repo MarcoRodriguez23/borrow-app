@@ -20,7 +20,7 @@
             
             @auth
                 @if ($user->id !== auth()->user()->id)
-                    @if ($user->contactado(auth()->user()) || $user->contactings(auth()->user()))
+                    @if (auth()->user()->contactado($user))
                         <p>Solicitud de contacto enviada</p>
                     @else
                         <form action="{{route('user.contact',$user)}}" method="POST">

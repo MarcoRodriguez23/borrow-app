@@ -10,9 +10,18 @@
     
         @foreach ($solicitudes as $solicitud)
             <div>
-                <h1>{{$solicitud->name}} {{$solicitud->lastname}} te envio solicitud</h1>
-                {{-- <a href="{{route('/profile.index',['user'=>$solicitud])}}">Visitar Perfil</a> --}}
-                <p>Rechazar</p>
+                <h1>{{$solicitud->user->name}} {{$solicitud->user->lastname}} te envio solicitud</h1>
+                <a href="{{route('profile.index',['user'=>$solicitud->user])}}">Visitar Perfil</a>
+                
+              <div id="rechazando solicitud">
+                <form action="{{route('user.uncontact',['contact'=>$solicitud])}}"  method="POST">
+                  @method('DELETE')
+                  @csrf
+                  <input type="submit" class="bg-red-600 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer" value="Rechazar">
+              </form>
+              </div>
+
+
             </div>
         @endforeach
     </div>

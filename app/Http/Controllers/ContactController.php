@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $solicitudes = auth()->user()->contacts;
+        $solicitudes = Contact::where('contact_id',auth()->user()->id)->latest()->paginate(8);
         return view('contact.index',[
             'solicitudes' => $solicitudes
         ]);
@@ -18,8 +18,13 @@ class ContactController extends Controller
 
     public function store(User $user)
     {
-        // dd($user);
-        $user->contacts()->attach(auth()->user()->id);
+        $user->contactings()->attach(auth()->user()->id);
         return back();
+    }
+
+    public function destroy(Contact $contact)
+    {
+      $contact->delete();
+      return back();
     }
 }
