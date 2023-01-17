@@ -46,5 +46,6 @@ Route::patch('/item/{item}/edit',[ItemController::class, 'update'])->name('item.
 Route::get('/solicitudes',[ContactController::class,'index'])->name('solicitudes');
 Route::post('/profile-{user}/contact',[ContactController::class,'store'])->name('user.contact');
 Route::delete('/profile-{contact}/uncontact',[ContactController::class,'destroy'])->name('user.uncontact');
+Route::put('/profile-{contact}/accept',[ContactController::class,'update'])->name('user.accept');
 
 require __DIR__.'/auth.php';

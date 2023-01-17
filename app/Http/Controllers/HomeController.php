@@ -14,11 +14,14 @@ class HomeController extends Controller
 
     public function __invoke()
     {
-        // $ids=(auth()->user()->contacts->pluck('id')->toArray());
-        $myitems = auth()->user()->items;
+      //trayendo los ids de mis contactos
+      $ids=(auth()->user()->contactings->pluck('id')->toArray());
+      $myitems = auth()->user()->items;
+      $items = Item::whereIn('user_id',$ids)->latest()->get();
 
-        return view('dashboard',[
-            'myitems' => $myitems
-        ]);
+      return view('dashboard',[
+        'myitems' => $myitems,
+        'items' => $items
+    ]);
     }
 }

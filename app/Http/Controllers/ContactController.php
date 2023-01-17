@@ -10,16 +10,23 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $solicitudes = Contact::where('contact_id',auth()->user()->id)->latest()->paginate(8);
-        return view('contact.index',[
-            'solicitudes' => $solicitudes
-        ]);
+      $solicitudes = Contact::where('contact_id',auth()->user()->id)->where('accept',0)->get();
+      return view('contact.index',[
+        'solicitudes' => $solicitudes
+      ]);
     }
 
     public function store(User $user)
     {
-        $user->contactings()->attach(auth()->user()->id);
-        return back();
+      $user->contactings()->attach(auth()->user()->id);
+      return back();
+    }
+
+    public function update(Contact $contact)
+    {
+      $contact->accept = 1;
+      $contact->save();
+      return back();
     }
 
     public function destroy(Contact $contact)
