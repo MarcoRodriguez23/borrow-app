@@ -59,10 +59,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class,'contacts','user_id','contact_id');
     }
 
-    public function contactado(User $user)
-    {
-        return $this->contacts->contains($user->id);
-    }
+ 
 
     // public function contactadoinv(User $user)
     // {
@@ -72,5 +69,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function contactings()
     {
         return $this->belongsToMany(User::class,'contacts','contact_id','user_id');
+    }
+
+    public function contactado(User $user)
+    {
+        return $this->contacts->contactings($user->id);
     }
 }
