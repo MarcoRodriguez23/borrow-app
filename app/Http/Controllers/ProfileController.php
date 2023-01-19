@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Contact;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
 
     public function index(User $user)
     {
+        $ids=(auth()->user()->contactings->pluck('id')->toArray()); 
         return view('profile.index',[
-            'user' => $user
+            'user' => $user,
+            'ids' => $ids
         ]);
     }
     /**

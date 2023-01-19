@@ -44,7 +44,7 @@
                       </div>
                       <div id="parteinferior" class="grid grid-cols-2 mt-10">
                           <img src="{{asset('articulos/'.$item->photo->photo)}}" alt="image-item" class="w-auto">
-                          <div class="p-4 pt-0 text-left text-sm text-white flex flex-col justify-evenly">
+                          <div class="px-4 text-left text-sm text-white flex flex-col justify-between">
                               <p>Precio: ${{$item->price}}</p>
                               <p>Condición 
                                 <br>
@@ -94,7 +94,7 @@
                     </div>
                     <div id="parteinferior" class="grid grid-cols-2 mt-10">
                         <img src="{{asset('articulos/'.$item->photo->photo)}}" alt="image-item" class="w-auto">
-                        <div class="p-4 pt-0 text-left text-sm text-white flex flex-col justify-evenly">
+                        <div class="px-4 text-left text-sm text-white flex flex-col justify-between">
                             <p>Precio: ${{$item->price}}</p>
                             <p>Condición 
                               <br>

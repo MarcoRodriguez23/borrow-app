@@ -73,6 +73,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function contactado(User $user)
     {
-        return $this->contacts->contactings($user->id);
+      return $this->contactings->contains($user->id);
     }
 }
