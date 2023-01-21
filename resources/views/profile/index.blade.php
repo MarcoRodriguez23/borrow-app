@@ -31,9 +31,6 @@
     </div>
 
     <div class="flex justify-center p-4">
-      {{-- <button class="bg-black hover:bg-gray-400 text-white hover:text-black font-bold py-2 px-4 border-b-1 border-gray-700 hover:border-gray-500 rounded">
-          Texto Alternativo
-      </button> --}}
       @auth
         @if ($user->id !== auth()->user()->id)
           @if (auth()->user()->contactado($user))
@@ -91,15 +88,11 @@
                 <img src="{{$amigo->photo ? asset('profiles/'.$amigo->photo) : asset('img/usuario.svg')}}" alt="amigo photo">
                 <p class="text-center text-bold">{{$amigo->name}} {{$amigo->lastname}}</p>
               </a>
-                
             @endforeach
-              
           </div>
         </div>
       </div>
     </div>
   </div>
 <!--Termina Contenido-->
-
-   
 </x-app-layout>
